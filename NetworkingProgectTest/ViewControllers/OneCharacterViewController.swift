@@ -9,9 +9,13 @@ import UIKit
 
 class OneCharacterViewController: UIViewController {
 
-    @IBOutlet var characterImage: UIImageView!
+    @IBOutlet var characterImage: UIImageView! {
+        didSet {
+            characterImage.layer.cornerRadius = 20
+        }
+    }
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var idTextField: UITextField!
-    
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var genderLabel: UILabel!
     @IBOutlet var cultureLabel: UILabel!
@@ -23,23 +27,15 @@ class OneCharacterViewController: UIViewController {
     @IBOutlet var playedByLabel: UILabel!
     @IBOutlet var allegiancesLabel: UILabel!
     
-    var singleCharacter: Character?
+    private var singleCharacter: Character?
+    private var allCharacters: [Characters]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         idTextField.delegate = self
-        fetchRandomCharacterInfo()
-        characterImage.image = UIImage(systemName: "person")
-//        nameLabel.text = "name: \(singleCharacter?.name ?? "No data")"
-//        genderLabel.text = "gender: \(singleCharacter?.gender ?? "No data")"
-//        cultureLabel.text = "culture: \(singleCharacter?.culture ?? "No data")"
-//        dateOfBirthLabel.text = "date of birth: \(singleCharacter?.born ?? "No data")"
-//        dateOfDeathLabel.text = "date of death: \(singleCharacter?.died ?? "No data")"
-//        titlesLabel.text = "titles: \(singleCharacter?.titles?.joined() ?? "No data")"
-//        aliasesLabel.text = "aliases: \(singleCharacter?.aliases?.joined(separator: ", ") ?? "No data")"
-//        tvSeriesLabel.text = "TV series: \(singleCharacter?.tvSeries?.joined(separator: ", ") ?? "No data")"
-//        playedByLabel.text = "played by: \(singleCharacter?.playedBy?.joined(separator: ", ") ?? "No data")"
-//        allegiancesLabel.text = "allegiances: \(singleCharacter?.allegiances?.joined(separator: ", ") ?? "No data")"
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        fetchSingleCharacterInfo()
     }
 
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
@@ -52,37 +48,56 @@ class OneCharacterViewController: UIViewController {
 
 extension OneCharacterViewController {
     
-   func fetchRandomCharacterInfo() {
-        guard let url = URL(string: "https://anapioficeandfire.com/api/characters/583") else { return }
-
-        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            do {
-                let character = try JSONDecoder().decode(Character.self, from: data)
+    func fetchSingleCharacterInfo() {
+        NetworkManager.shared.fetch(Character.self, from: Link.singleCharacterUrl.rawValue) { [weak self] result in
+            switch result {
+            case .success(let character):
                 self?.singleCharacter = character
-                DispatchQueue.main.async {
-                    self?.nameLabel.text = "name: \(character.name ?? "No data")"
-                    self?.genderLabel.text = "gender: \(character.gender ?? "No data")"
-                    self?.cultureLabel.text = "culture: \(character.culture ?? "No data")"
-                    self?.dateOfBirthLabel.text = "date of birth: \(character.born ?? "No data")"
-                    self?.dateOfDeathLabel.text = "date of death: \(character.died ?? "No data")"
-                    self?.titlesLabel.text = "titles: \(character.titles?.joined(separator: ", ") ?? "No data")"
-                    self?.aliasesLabel.text = "aliases: \(character.aliases?.joined(separator: ", ") ?? "No data")"
-                    self?.tvSeriesLabel.text = "TV series: \(character.tvSeries?.joined(separator: ", ") ?? "No data")"
-                    self?.playedByLabel.text = "played by: \(character.playedBy?.joined(separator: ", ") ?? "No data")"
-                    self?.allegiancesLabel.text = "allegiances: \(character.allegiances?.joined(separator: ", ") ?? "No data")"
-                }
-            } catch let error {
-                print(error.localizedDescription)
+                self?.nameLabel.text = "Name: \(character.name ?? "No data")"
+                self?.genderLabel.text = "Gender: \(character.gender ?? "No data")"
+                self?.cultureLabel.text = "Culture: \(character.culture ?? "No data")"
+                self?.dateOfBirthLabel.text = "Date of birth: \(character.born ?? "No data")"
+                self?.dateOfDeathLabel.text = "Date of death: \(character.died ?? "No data")"
+                self?.titlesLabel.text = "Titles: \(character.titles?.joined(separator: ", ") ?? "No data")"
+                self?.aliasesLabel.text = "Aliases: \(character.aliases?.joined(separator: ", ") ?? "No data")"
+                self?.tvSeriesLabel.text = "TV series: \(character.tvSeries?.joined(separator: ", ") ?? "No data")"
+                self?.playedByLabel.text = "Played by: \(character.playedBy?.joined(separator: ", ") ?? "No data")"
+                self?.allegiancesLabel.text = "Allegiances: \(character.allegiances?.joined(separator: ", ") ?? "No data")"
+                self?.fetchAllMainCaractersInfo()
+            case .failure(let error):
+                print(error)
             }
-        }.resume()
-        
+        }
     }
-
+    
+    func fetchAllMainCaractersInfo() {
+        NetworkManager.shared.fetch([Characters].self, from: Link.allCharactersUrl.rawValue) { [weak self] result in
+            switch result {
+            case .success(let characters):
+                self?.allCharacters = characters
+                for character in characters {
+                    if character.fullName == self?.singleCharacter?.name {
+                        let url = character.imageUrl
+                        NetworkManager.shared.fetchImage(from: url) { result in
+                            switch result {
+                            case .success(let imageData):
+                                self?.characterImage.image = UIImage(data: imageData)
+                                self?.activityIndicator.stopAnimating()
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
 }
+
+// MARK: UITextFieldDelegate
 
 extension OneCharacterViewController: UITextFieldDelegate {
     

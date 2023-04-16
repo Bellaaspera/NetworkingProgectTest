@@ -30,3 +30,12 @@ struct Characters: Codable {
     let image: String?
     let imageUrl: String?
 }
+
+struct Episode: Codable {
+    let name: String?
+    let region: String?
+    let coatOfArms: String?
+    let words: String?
+    let titles: [String]?
+    let seats: [String]?
+}

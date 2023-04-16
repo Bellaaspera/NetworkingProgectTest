@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="BZF-9h-kMd">
-                                <rect key="frame" x="16" y="390.66666666666669" width="361" height="206.00000000000006"/>
+                                <rect key="frame" x="16" y="371.66666666666669" width="361" height="206.00000000000006"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qZ-0O-dVY">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="17"/>
@@ -56,7 +56,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsb-Yp-1fL">
-                                        <rect key="frame" x="0.0" y="125.99999999999994" width="361" height="17"/>
+                                        <rect key="frame" x="0.0" y="126" width="361" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -82,19 +82,22 @@
                                 </subviews>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qBM-cF-iNC">
-                                <rect key="frame" x="16" y="84" width="361" height="34"/>
+                                <rect key="frame" x="16" y="136" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="deB-JL-a3V">
-                                <rect key="frame" x="125.66666666666667" y="229" width="141.66666666666663" height="141.66666666666663"/>
+                                <rect key="frame" x="125.66666666666667" y="210" width="141.66666666666663" height="141.66666666666663"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="deB-JL-a3V" secondAttribute="height" multiplier="1:1" id="eXD-t1-GHo"/>
                                 </constraints>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="EdW-5p-iGd">
+                                <rect key="frame" x="186.66666666666666" y="270" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qBM-cF-iNC" secondAttribute="trailing" constant="16" id="13N-OX-jBb"/>
                             <constraint firstItem="qBM-cF-iNC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="6zI-ax-ZWD"/>
@@ -102,9 +105,11 @@
                             <constraint firstItem="BZF-9h-kMd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="7f6-Sx-gLF"/>
                             <constraint firstItem="deB-JL-a3V" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.166271" id="Ei0-w1-xKd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BZF-9h-kMd" secondAttribute="trailing" constant="16" id="KLn-dF-lFD"/>
-                            <constraint firstItem="deB-JL-a3V" firstAttribute="top" secondItem="qBM-cF-iNC" secondAttribute="bottom" constant="111" id="Xo4-Vk-l68"/>
+                            <constraint firstItem="deB-JL-a3V" firstAttribute="top" secondItem="qBM-cF-iNC" secondAttribute="bottom" constant="40" id="Xo4-Vk-l68"/>
                             <constraint firstItem="BZF-9h-kMd" firstAttribute="top" secondItem="deB-JL-a3V" secondAttribute="bottom" constant="20" id="ZKk-gW-HKY"/>
+                            <constraint firstItem="EdW-5p-iGd" firstAttribute="top" secondItem="qBM-cF-iNC" secondAttribute="bottom" constant="100" id="bIY-LH-0zP"/>
                             <constraint firstItem="deB-JL-a3V" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c7e-rY-yj3"/>
+                            <constraint firstItem="EdW-5p-iGd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="heK-NQ-NfC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Choose Character" id="wP9-n5-c5n">
@@ -115,6 +120,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="EdW-5p-iGd" id="f7T-UQ-O4e"/>
                         <outlet property="aliasesLabel" destination="Hsb-Yp-1fL" id="OcI-LY-9BE"/>
                         <outlet property="allegiancesLabel" destination="5HO-fZ-J5H" id="uVn-if-EWT"/>
                         <outlet property="characterImage" destination="deB-JL-a3V" id="swZ-De-Ih9"/>
@@ -141,19 +147,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bop-Kg-4wa">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="89" translatesAutoresizingMaskIntoConstraints="NO" id="X18-Fz-RUT">
-                                <rect key="frame" x="16" y="341.66666666666669" width="361" height="168.66666666666669"/>
+                                <rect key="frame" x="16" y="338.33333333333331" width="361" height="175.66666666666669"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to The Game Of Thrones World! What do you need to know about it?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkj-ZD-rXG">
-                                        <rect key="frame" x="2.3333333333333428" y="0.0" width="356.33333333333326" height="45.666666666666664"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="45.666666666666664"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNf-dj-0gR">
-                                        <rect key="frame" x="129" y="134.66666666666663" width="103" height="34"/>
-                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                        <rect key="frame" x="113" y="134.66666666666669" width="135" height="41"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="  Show me!  ">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -174,17 +183,22 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="X18-Fz-RUT" firstAttribute="centerY" secondItem="yxX-mH-leb" secondAttribute="centerY" id="3ow-8k-q5g"/>
+                            <constraint firstItem="bop-Kg-4wa" firstAttribute="trailing" secondItem="8oB-5V-aFz" secondAttribute="trailing" id="DJm-Sk-zmo"/>
+                            <constraint firstItem="bop-Kg-4wa" firstAttribute="top" secondItem="yxX-mH-leb" secondAttribute="top" id="Mgu-Lg-OnX"/>
+                            <constraint firstItem="bop-Kg-4wa" firstAttribute="leading" secondItem="8oB-5V-aFz" secondAttribute="leading" id="O5p-wi-23w"/>
                             <constraint firstItem="X18-Fz-RUT" firstAttribute="leading" secondItem="8oB-5V-aFz" secondAttribute="leading" constant="16" id="pv5-GX-TvV"/>
                             <constraint firstAttribute="trailing" secondItem="X18-Fz-RUT" secondAttribute="trailing" constant="16" id="raA-8q-PZS"/>
+                            <constraint firstAttribute="bottom" secondItem="bop-Kg-4wa" secondAttribute="bottom" id="rqo-dQ-Fid"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundImage" destination="bop-Kg-4wa" id="wSk-b0-t0L"/>
                         <segue destination="lGP-f4-P1q" kind="presentation" identifier="showCharacters" modalPresentationStyle="fullScreen" id="eUW-Tp-3jz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3RU-by-Lho" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-724" y="51"/>
+            <point key="canvasLocation" x="-724.4274809160305" y="50.70422535211268"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qdE-Ga-Yaa">
@@ -204,7 +218,7 @@
             </objects>
             <point key="canvasLocation" x="16" y="51"/>
         </scene>
-        <!--Game Of Trones Main Characters-->
+        <!--Main Characters-->
         <scene sceneID="TMn-7R-haW">
             <objects>
                 <viewController id="ZAV-G1-0aa" customClass="CharactersViewController" customModule="NetworkingProgectTest" customModuleProvider="target" sceneMemberID="viewController">
@@ -283,7 +297,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JH7-Lq-3nV"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Zh1-om-Piv" firstAttribute="top" secondItem="JH7-Lq-3nV" secondAttribute="top" id="Lk2-iq-YD5"/>
                             <constraint firstItem="KeB-Gz-d6Z" firstAttribute="centerY" secondItem="fGj-9r-VKV" secondAttribute="centerY" id="Szs-v0-9cK"/>
@@ -293,7 +307,7 @@
                             <constraint firstItem="JH7-Lq-3nV" firstAttribute="bottom" secondItem="Zh1-om-Piv" secondAttribute="bottom" id="iRk-KA-tu4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Game Of Trones Main Characters" id="4q4-tA-8Fv">
+                    <navigationItem key="navigationItem" title="Main Characters" id="4q4-tA-8Fv">
                         <barButtonItem key="leftBarButtonItem" title="Back to begining" id="I4b-6N-UGl">
                             <connections>
                                 <action selector="backButtonPressed:" destination="ZAV-G1-0aa" id="N0t-Gi-XGu"/>
@@ -315,8 +329,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k6w-2R-DT2" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="All Main Characters" image="person.2.fill" catalog="system" id="SNi-gf-vrr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O2C-nL-os4">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="O2C-nL-os4">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -334,8 +348,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eRr-tz-0c6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="One Character" image="person.fill" catalog="system" id="L4y-ho-p9g"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dPF-Zs-yhT">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="dPF-Zs-yhT">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -356,9 +370,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

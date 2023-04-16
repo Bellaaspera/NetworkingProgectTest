@@ -18,25 +18,18 @@ class TableViewCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var familyLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-       
-    }
 
     func configure(with characters: Characters) {
         nameLabel.text = characters.fullName
         titleLabel.text = characters.title
         familyLabel.text = characters.family
         
-        guard let url = URL(string: characters.imageUrl ?? "") else { return }
-        DispatchQueue.global().async { [weak self] in
-            
-            guard let imageData = try? Data(contentsOf: url) else {
-                self?.characterImage.image = UIImage(systemName: "person")
-                return
-            }
-            DispatchQueue.main.async {
+        NetworkManager.shared.fetchImage(from: characters.imageUrl) { [weak self] result in
+            switch result {
+            case .success(let imageData):
                 self?.characterImage.image = UIImage(data: imageData)
+            case .failure(let error):
+                print(error)
             }
         }
     }
