@@ -15,9 +15,11 @@
 		7006650529E992E500305FE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7006650329E992E500305FE6 /* LaunchScreen.storyboard */; };
 		7006651229E993D000305FE6 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006651129E993D000305FE6 /* Character.swift */; };
 		7006651429E9C28300305FE6 /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006651329E9C28300305FE6 /* CharactersViewController.swift */; };
-		7006651B29E9D43B00305FE6 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006651A29E9D43B00305FE6 /* TableViewCell.swift */; };
+		7006651B29E9D43B00305FE6 /* MainCharactersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006651A29E9D43B00305FE6 /* MainCharactersTableViewCell.swift */; };
 		7006652029EA872000305FE6 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006651F29EA872000305FE6 /* NetworkManager.swift */; };
 		7006652429EB4AE700305FE6 /* StarterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006652329EB4AE700305FE6 /* StarterViewController.swift */; };
+		7006652829ED919D00305FE6 /* AllegiancesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006652729ED919D00305FE6 /* AllegiancesTableViewController.swift */; };
+		7006652A29ED93FA00305FE6 /* EpisodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006652929ED93FA00305FE6 /* EpisodeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +33,11 @@
 		7006650629E992E500305FE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7006651129E993D000305FE6 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		7006651329E9C28300305FE6 /* CharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewController.swift; sourceTree = "<group>"; };
-		7006651A29E9D43B00305FE6 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		7006651A29E9D43B00305FE6 /* MainCharactersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCharactersTableViewCell.swift; sourceTree = "<group>"; };
 		7006651F29EA872000305FE6 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7006652329EB4AE700305FE6 /* StarterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterViewController.swift; sourceTree = "<group>"; };
+		7006652729ED919D00305FE6 /* AllegiancesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllegiancesTableViewController.swift; sourceTree = "<group>"; };
+		7006652929ED93FA00305FE6 /* EpisodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,7 @@
 				7006652329EB4AE700305FE6 /* StarterViewController.swift */,
 				700664FC29E992E400305FE6 /* OneCharacterViewController.swift */,
 				7006651329E9C28300305FE6 /* CharactersViewController.swift */,
+				7006652729ED919D00305FE6 /* AllegiancesTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -125,7 +130,8 @@
 		7006651529E9C45C00305FE6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7006651A29E9D43B00305FE6 /* TableViewCell.swift */,
+				7006651A29E9D43B00305FE6 /* MainCharactersTableViewCell.swift */,
+				7006652929ED93FA00305FE6 /* EpisodeTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,9 +218,11 @@
 				700664FD29E992E400305FE6 /* OneCharacterViewController.swift in Sources */,
 				700664F929E992E400305FE6 /* AppDelegate.swift in Sources */,
 				700664FB29E992E400305FE6 /* SceneDelegate.swift in Sources */,
+				7006652A29ED93FA00305FE6 /* EpisodeTableViewCell.swift in Sources */,
 				7006652029EA872000305FE6 /* NetworkManager.swift in Sources */,
 				7006651429E9C28300305FE6 /* CharactersViewController.swift in Sources */,
-				7006651B29E9D43B00305FE6 /* TableViewCell.swift in Sources */,
+				7006651B29E9D43B00305FE6 /* MainCharactersTableViewCell.swift in Sources */,
+				7006652829ED919D00305FE6 /* AllegiancesTableViewController.swift in Sources */,
 				7006652429EB4AE700305FE6 /* StarterViewController.swift in Sources */,
 				7006651229E993D000305FE6 /* Character.swift in Sources */,
 			);

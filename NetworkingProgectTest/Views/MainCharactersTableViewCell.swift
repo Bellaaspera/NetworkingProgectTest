@@ -1,5 +1,5 @@
 //
-//  TableViewCell.swift
+//  MainCharactersTableViewCell.swift
 //  NetworkingProgectTest
 //
 //  Created by Светлана Сенаторова on 14.04.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class MainCharactersTableViewCell: UITableViewCell {
     
     @IBOutlet var characterImage: UIImageView! {
         didSet {

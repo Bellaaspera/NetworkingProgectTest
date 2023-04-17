@@ -31,7 +31,7 @@ class CharactersViewController: UIViewController {
 
 extension CharactersViewController {
     
-    func fetchAllMainCaractersInfo() {
+   private func fetchAllMainCaractersInfo() {
         NetworkManager.shared.fetch([Characters].self, from: Link.allCharactersUrl.rawValue) { [weak self] result in
             switch result {
             case .success(let characters):
@@ -54,7 +54,7 @@ extension CharactersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "characterCell", for: indexPath) as? TableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "characterCell", for: indexPath) as? MainCharactersTableViewCell else { return UITableViewCell() }
         cell.configure(with: allCharacters[indexPath.row])
         return cell
     }

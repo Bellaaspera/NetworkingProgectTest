@@ -25,10 +25,11 @@ class OneCharacterViewController: UIViewController {
     @IBOutlet var aliasesLabel: UILabel!
     @IBOutlet var tvSeriesLabel: UILabel!
     @IBOutlet var playedByLabel: UILabel!
-    @IBOutlet var allegiancesLabel: UILabel!
     
     private var singleCharacter: Character?
     private var allCharacters: [Characters]?
+    private var characterID = 583
+    private var allegiances: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +37,39 @@ class OneCharacterViewController: UIViewController {
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         fetchSingleCharacterInfo()
+        addToolBar()
     }
 
     @IBAction func backButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
+    }
+    
+    @IBAction func showAllegiancesButtonPressed() {
+        performSegue(withIdentifier: "showAllegiances", sender: nil)
+    }
+    
+    @objc private func donePressed() {
+        view.endEditing(true)
+        fetchSingleCharacterInfo()
+    }
+    
+    private func addToolBar() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        idTextField.inputAccessoryView = toolBar
+        
+        let doneButton = UIBarButtonItem(
+            title: "Done",
+            style: UIBarButtonItem.Style.done,
+            target: self,
+            action: #selector(donePressed)
+        )
+        let flexBarButton = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
+        toolBar.items = [flexBarButton, doneButton]
     }
     
 }
@@ -48,8 +78,8 @@ class OneCharacterViewController: UIViewController {
 
 extension OneCharacterViewController {
     
-    func fetchSingleCharacterInfo() {
-        NetworkManager.shared.fetch(Character.self, from: Link.singleCharacterUrl.rawValue) { [weak self] result in
+   private func fetchSingleCharacterInfo() {
+        NetworkManager.shared.fetch(Character.self, from: Link.singleCharacterUrl.rawValue + String(characterID)) { [weak self] result in
             switch result {
             case .success(let character):
                 self?.singleCharacter = character
@@ -62,7 +92,7 @@ extension OneCharacterViewController {
                 self?.aliasesLabel.text = "Aliases: \(character.aliases?.joined(separator: ", ") ?? "No data")"
                 self?.tvSeriesLabel.text = "TV series: \(character.tvSeries?.joined(separator: ", ") ?? "No data")"
                 self?.playedByLabel.text = "Played by: \(character.playedBy?.joined(separator: ", ") ?? "No data")"
-                self?.allegiancesLabel.text = "Allegiances: \(character.allegiances?.joined(separator: ", ") ?? "No data")"
+                self?.allegiances = character.allegiances ?? []
                 self?.fetchAllMainCaractersInfo()
             case .failure(let error):
                 print(error)
@@ -70,7 +100,7 @@ extension OneCharacterViewController {
         }
     }
     
-    func fetchAllMainCaractersInfo() {
+   private func fetchAllMainCaractersInfo() {
         NetworkManager.shared.fetch([Characters].self, from: Link.allCharactersUrl.rawValue) { [weak self] result in
             switch result {
             case .success(let characters):
@@ -87,6 +117,8 @@ extension OneCharacterViewController {
                                 print(error)
                             }
                         }
+                    } else if character.fullName != self?.singleCharacter?.name {
+                        self?.characterImage.image = UIImage(systemName: "person.fill")
                     }
                 }
             case .failure(let error):
@@ -97,8 +129,45 @@ extension OneCharacterViewController {
     
 }
 
-// MARK: UITextFieldDelegate
+// MARK: - UITextFieldDelegate
 
 extension OneCharacterViewController: UITextFieldDelegate {
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = idTextField.text, !text.isEmpty else {
+            showAlert(with: "Id required!", message: "Please, enter characters ID")
+            return
+        }
+        guard let numberId = Int(text), numberId < 600 else {
+            showAlert(with: "Wrong ID!", message: "Please, enter numeral Id")
+            return
+        }
+        characterID = numberId
+    }
+    
+}
+
+// MARK: - UIAlertController
+
+extension OneCharacterViewController {
+    private func showAlert(with title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { [unowned self] _ in
+            self.idTextField.text = ""
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
+}
+
+// MARK: Navigation
+
+extension OneCharacterViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let navigationVC = segue.destination as? UINavigationController else { return }
+        guard let allegiancesVC = navigationVC.topViewController as? AllegiancesTableViewController else { return }
+        allegiancesVC.allegiancesLinks = allegiances
+    }
     
 }

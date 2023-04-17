@@ -8,7 +8,7 @@
 import Foundation
 
 enum Link: String {
-    case singleCharacterUrl = "https://anapioficeandfire.com/api/characters/583"
+    case singleCharacterUrl = "https://anapioficeandfire.com/api/characters/"
     case allCharactersUrl = "https://thronesapi.com/api/v2/Characters"
 }
 
